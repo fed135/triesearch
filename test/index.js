@@ -1,21 +1,25 @@
-var Autocomplete = require('../index')
+var Autocomplete = require('../index');
 var should = require('should');
-var data = [
-  'fruit',
-  'banana',
-  'orange',
-  'kiwi',
-  'app',
-  'orange juice',
-  ['apple', 'red'],
-  ['apple pie', 'tasty']
-]
+var path = require('path');
+var fs = require('fs');
 
-describe('Basic', function () {
-  var auto
+describe.only('Basic', function () {
+  var auto;
+
+  var data = [
+    'fruit',
+    'banana',
+    'orange',
+    'kiwi',
+    'app',
+    'orange juice',
+    {'apple': 'red'},
+    {'apple pie': 'tasty'}
+  ];
+
   before(function () {
     auto = new Autocomplete()
-    auto.initialize(data)
+    auto.initialize(data);
   })
 
   it('should find multiple elements from a given prefix ' ,function (done) {
@@ -29,12 +33,12 @@ describe('Basic', function () {
     var data = [
       'app',
       'apple',
-      ['apples', 'yummy'],
+      {'apples': 'yummy'},
       'banana'
     ]
     var autocomplete = new Autocomplete()
     autocomplete.initialize(data)
-    var desiredNumElements = 3
+    var desiredNumElements = 3;
     var results = autocomplete.search('ap')
     results.length.should.eql(desiredNumElements)
     var applesResults = results.filter(function (result) {
@@ -103,4 +107,25 @@ describe('Basic', function () {
     done()
   })
 
+})
+
+describe('Large', function () {
+  var auto, words
+  before(function () {
+  	this.timeout(60000);
+    var filePath = path.join(__dirname,'words.txt')
+    var text = fs.readFileSync(filePath, 'utf8')
+    words = text.split(/\n/);
+    auto = new Autocomplete()
+    auto.initialize(words)
+  })
+
+  it('should find multiple elements from a given prefix ' ,function () {
+  	this.timeout(60000);
+    var start = Date.now();
+    var matches = auto.search('mon');
+    var duration = Date.now() - start; 
+    console.log('Took ' + duration + 'ms to find ' + matches.length + ' matches from a set of ' + words.length + ' words');
+    matches.length.should.eql(663);
+  })
 })

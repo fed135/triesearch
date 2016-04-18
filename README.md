@@ -1,11 +1,13 @@
 # Node Autocomplete
 
- [Node Autocomplete](https://www.github.com/marccampbell/node-autocomplete) is an autocomplete library for [node.js](http://nodejs.org).
+Modernized Trie-search based on [Node Autocomplete](https://www.github.com/marccampbell/node-autocomplete) is an autocomplete library for [node.js](http://nodejs.org).
+
+**TODO**: Cleanup test suite, use chai. Add all them missing semi-colons...
 
 ## Installation
 
 ```bash
-npm install -S autocomplete
+npm install triesearch
 ```
 
 ## Features
@@ -42,7 +44,7 @@ The output of the search is an array of objects with key and value properties. I
   },
   {
     key: 'apple',
-    value: 'apple,
+    value: 'apple',
   }
 ]
 ```

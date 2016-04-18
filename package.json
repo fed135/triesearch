@@ -1,5 +1,5 @@
 {
-  "name": "triecomplete",
+  "name": "triesearch",
   "description": "An in-memory node.js autocomplete package based on the trie data structure, based off the autocomplete module",
   "keywords": [
     "autocomplete",
@@ -9,27 +9,20 @@
     "completion",
     "search"
   ],
-  "version": "0.0.1",
-  "author": "Noah Isaacson",
+  "version": "1.0.0",
+  "author": "fed135",
   "main": "index",
   "dependencies": {},
   "devDependencies": {
-    "mocha": "~1.9.0",
-    "eyespect": "~0.1.8",
-    "should": "~1.2.2",
-    "moment": "~2.0.0"
-  },
-  "readmeFilename": "README.md",
-  "directories": {
-    "example": "examples",
-    "test": "test"
+    "mocha": "2.4.x",
+    "should": "8.3.x"
   },
   "scripts": {
-    "test": "make test"
+    "test": "mocha test/"
   },
   "repository": {
     "type": "git",
     "url": "git://github.com/nisaacson/triecomplete.git"
   },
-  "license": "BSD"
+  "license": "GPLv3"
 }

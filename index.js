@@ -21,14 +21,8 @@ Autocomplete.prototype.initialize = function(elements) {
 
 Autocomplete.prototype.addContainer = function(element) {
   Object.keys(element).forEach(function(e, i) {
-    if (typeof element[e] === 'object') {
-      var _k = Object.keys(element[e]);
-      this.addElement({key:_k[0].toLowerCase(), value:element[e][_k[0]]});
-    }
-    else {
-      if (e != i) this.addElement({key: e.toLowerCase(), value: element[e]});
-      else this.addElement({key: element[i].toLowerCase(), value: element[i]});
-    }
+    if (e != i) this.addElement({key: e.toLowerCase(), value: element[e]});
+    else this.addElement({key: element[i].toLowerCase(), value: element[i]});
   }, this);
 };
 
@@ -42,7 +36,7 @@ Autocomplete.prototype.removeElement = function(element) {
 };
 
 Autocomplete.prototype.search = function(prefix) {
-  return this.trie.autoComplete(prefix);
+  return this.trie.autoComplete(prefix.toLowerCase());
 };
 
 /* Exports -------------------------------------------------------------------*/

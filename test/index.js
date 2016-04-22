@@ -3,7 +3,7 @@ var should = require('should');
 var path = require('path');
 var fs = require('fs');
 
-describe.only('Basic', function () {
+describe('Basic', function () {
   var auto;
 
   var data = [
@@ -13,8 +13,8 @@ describe.only('Basic', function () {
     'kiwi',
     'app',
     'orange juice',
-    {'apple': 'red'},
-    {'apple pie': 'tasty'}
+    'apple',
+    'apple pie'
   ];
 
   before(function () {
@@ -30,12 +30,12 @@ describe.only('Basic', function () {
   })
 
   it('should match key-value array elements ' ,function (done) {
-    var data = [
-      'app',
-      'apple',
-      {'apples': 'yummy'},
-      'banana'
-    ]
+    var data = {
+      app: 'app',
+      apples: 'yummy',
+      apple: 'yummy',
+      banana: {name: 'banana', id: 5}
+    }
     var autocomplete = new Autocomplete()
     autocomplete.initialize(data)
     var desiredNumElements = 3;
